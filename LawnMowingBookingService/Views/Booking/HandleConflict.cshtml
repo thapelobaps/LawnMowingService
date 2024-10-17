@@ -1,0 +1,13 @@
+﻿@model LawnMowingBookingService.Models.Booking
+
+<h2>Resolve Booking Conflict</h2>
+<p>Original Booking Date: @Model.BookingDate</p>
+<p>Machine: @Model.Machine.Name</p>
+
+<form asp-action="HandleConflict" method="post">
+    <div>
+        <label>New Booking Date:</label>
+        <input type="date" asp-for="BookingDate" required />
+    </div>
+    <button type="submit">Resolve Conflict</button>
+</form>

@@ -1,0 +1,18 @@
+﻿@model LawnMowingBookingService.ViewModels.RegisterViewModel
+
+<h2>Register</h2>
+<form asp-action="Register" method="post">
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" required />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input asp-for="Password" required />
+    </div>
+    <div>
+        <label>Confirm Password:</label>
+        <input asp-for="ConfirmPassword" required />
+    </div>
+    <button type="submit">Register</button>
+</form>

@@ -1,0 +1,11 @@
+﻿@model LawnMowingBookingService.Models.Booking
+
+<h2>Acknowledge Booking</h2>
+<p>Booking for machine: @Model.Machine.Name</p>
+@* <p>Booking date: @Model.BookingDate.ToShortDateString()</p> *@
+<p>Customer: @Model.Customer.FirstName @Model.Customer.LastName</p>
+
+<form asp-action="AcknowledgeBooking" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Acknowledge</button>
+</form>

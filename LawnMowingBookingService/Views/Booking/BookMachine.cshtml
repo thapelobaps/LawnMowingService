@@ -1,0 +1,15 @@
+﻿@model List<LawnMowingBookingService.Models.Machine>
+
+<h2>Book a Machine</h2>
+<form asp-action="BookMachine" method="post">
+    <div>
+        <label>Select Machine:</label>
+       @*  <select asp-for="machineId" asp-items="@(new SelectList(Model, "Id", "Name"))"></select> *@
+    </div>
+
+    <div>
+        <label>Booking Date:</label>
+        @* <input type="date" asp-for="bookingDate" required /> *@
+    </div>
+    <button type="submit">Book</button>
+</form>
