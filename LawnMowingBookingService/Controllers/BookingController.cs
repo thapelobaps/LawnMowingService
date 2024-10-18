@@ -1,5 +1,8 @@
 ﻿using LawnMowingBookingService.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System;
+using System.Linq;
 
 
 namespace LawnMowingBookingService.Controllers
@@ -16,7 +19,7 @@ namespace LawnMowingBookingService.Controllers
         [HttpGet]
         public IActionResult BookMachine()
         {
-            var machines = _context.Machines.Where(m => (bool)m.IsAvailable).ToList();
+            var machines = _context.Machines.Where(m => m.IsAvailable ?? false).ToList();
             return View(machines);
         }
 
@@ -29,8 +32,8 @@ namespace LawnMowingBookingService.Controllers
                 var booking = new Booking
                 {
                     MachineId = machineId,
-                    CustomerId = User.FindFirst("UserId").Value, // Get from Claims
-                    BookingDate = bookingDate,
+                    CustomerId = int.Parse(User.FindFirst("UserId").Value), // Convert string to int
+                    BookingDate = DateOnly.FromDateTime(bookingDate), // Convert DateTime to DateOnly
                     IsAcknowledged = false
                 };
                 _context.Bookings.Add(booking);
@@ -77,11 +80,11 @@ namespace LawnMowingBookingService.Controllers
             if (booking != null)
             {
                 // Logic to find another available machine
-                var newMachine = _context.Machines.FirstOrDefault(m => m.IsAvailable);
+                var newMachine = _context.Machines.FirstOrDefault(m => m.IsAvailable ?? false);
                 if (newMachine != null)
                 {
                     booking.MachineId = newMachine.Id;
-                    booking.BookingDate = newBookingDate;
+                    booking.BookingDate = DateOnly.FromDateTime(newBookingDate); // Convert DateTime to DateOnly
                     _context.Bookings.Update(booking);
                     await _context.SaveChangesAsync();
 
