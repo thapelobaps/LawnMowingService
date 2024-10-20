@@ -1,25 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace LawnMowingBookingService.Models;
-
-public partial class Booking
+namespace LawnMowingBookingService.Models
 {
-    public int Id { get; set; }
+    public partial class Booking
+    {
+        public int Id { get; set; }
 
-    public int? CustomerId { get; set; }
+        [Required]
+        public int CustomerId { get; set; } // Make it required if necessary
 
-    public int? MachineId { get; set; }
+        [Required]
+        public int MachineId { get; set; } // Make it required if necessary
 
-    public DateOnly? BookingDate { get; set; }
+        [Required]
+        public DateOnly BookingDate { get; set; } // Make it required if necessary
 
-    public bool? IsAcknowledged { get; set; }
+        public bool IsAcknowledged { get; set; } // Default to false if not specified
 
-    public virtual ICollection<BookingConflict> BookingConflicts { get; set; } = new List<BookingConflict>();
+        public virtual ICollection<BookingConflict> BookingConflicts { get; set; } = new List<BookingConflict>();
 
-    public virtual Customer? Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
-    public virtual Machine? Machine { get; set; }
-
-    
+        public virtual Machine Machine { get; set; }
+    }
 }
+

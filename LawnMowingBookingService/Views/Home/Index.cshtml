@@ -2,7 +2,87 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section with Title and Subtitle -->
+<div class="hero-section text-center text-white" style="background-image: url('/images/hero-background.jpg'); background-size: cover; background-position: center; padding: 120px 0;">
+    <h1 class="display-4 font-weight-bold">Lawn Mowing Booking Service</h1>
+    <p class="lead">Your go-to platform for convenient and professional lawn mowing services.</p>
+    <a href="~/Booking/BookMachine" class="btn btn-lg btn-primary mt-4">Book a Lawn Mower</a>
+</div>
+
+<!-- What We Offer Section -->
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="display-6">What We Offer</h2>
+        <p class="text-muted">Our services are designed to meet all your lawn care needs.</p>
+    </div>
+
+    <div class="row">
+        <!-- Card 1: Easy Booking -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Easy Online Booking</h5>
+                    <p class="card-text">Book a lawnmower with just a few clicks using our user-friendly platform.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Professional Operators -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Experienced Operators</h5>
+                    <p class="card-text">Our skilled operators ensure top-notch mowing services, leaving your lawn looking perfect.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Conflict-Free Scheduling -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Conflict-Free Scheduling</h5>
+                    <p class="card-text">Our conflict managers handle scheduling conflicts seamlessly for a hassle-free experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2 class="display-6">How It Works</h2>
+        <p class="text-muted">Three simple steps to book your next lawn mowing service.</p>
+    </div>
+
+    <div class="row text-center">
+        <!-- Step 1 -->
+        <div class="col-md-4">
+            <h4 class="step-number">1</h4>
+            <h5>Select a Lawn Mower</h5>
+            <p>Choose from our wide selection of high-quality lawnmowers.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="col-md-4">
+            <h4 class="step-number">2</h4>
+            <h5>Choose a Time</h5>
+            <p>Select the time that works best for you. We offer flexible scheduling options.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="col-md-4">
+            <h4 class="step-number">3</h4>
+            <h5>Enjoy the Service</h5>
+            <p>Our professional operators will arrive on time and provide exceptional lawn care.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section with Call to Action -->
+<div class="footer-cta bg-dark text-white text-center py-5 mt-5">
+    <h4 class="mb-3">Get Started Today!</h4>
+    <p class="lead">Let us take care of your lawn while you sit back and relax.</p>
+    <a href="~/Booking/BookMachine" class="btn btn-lg btn-primary">Book Now</a>
 </div>

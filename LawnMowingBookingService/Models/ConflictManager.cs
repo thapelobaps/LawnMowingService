@@ -17,3 +17,4 @@ public partial class ConflictManager
 
     public virtual ICollection<BookingConflict> BookingConflicts { get; set; } = new List<BookingConflict>();
 }
+

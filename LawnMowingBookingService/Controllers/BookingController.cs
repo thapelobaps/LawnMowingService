@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace LawnMowingBookingService.Controllers
@@ -32,9 +33,9 @@ namespace LawnMowingBookingService.Controllers
                 var booking = new Booking
                 {
                     MachineId = machineId,
-                    CustomerId = int.Parse(User.FindFirst("UserId").Value), // Convert string to int
+                    CustomerId = int.Parse(User.FindFirst("Id").Value), // Convert string to int
                     BookingDate = DateOnly.FromDateTime(bookingDate), // Convert DateTime to DateOnly
-                    IsAcknowledged = false
+                    IsAcknowledged = true
                 };
                 _context.Bookings.Add(booking);
                 await _context.SaveChangesAsync();
@@ -63,35 +64,39 @@ namespace LawnMowingBookingService.Controllers
             return NotFound();
         }
 
-        public IActionResult HandleConflict(int bookingId)
-        {
-            var booking = _context.Bookings.Find(bookingId);
-            if (booking != null)
-            {
-                return View(booking);
-            }
-            return NotFound();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> HandleConflict(int bookingId, DateTime newBookingDate)
+        public IActionResult HandleConflict()
         {
-            var booking = await _context.Bookings.FindAsync(bookingId);
-            if (booking != null)
-            {
-                // Logic to find another available machine
-                var newMachine = _context.Machines.FirstOrDefault(m => m.IsAvailable ?? false);
-                if (newMachine != null)
-                {
-                    booking.MachineId = newMachine.Id;
-                    booking.BookingDate = DateOnly.FromDateTime(newBookingDate); // Convert DateTime to DateOnly
-                    _context.Bookings.Update(booking);
-                    await _context.SaveChangesAsync();
-
-                    return View("ConflictResolved", newMachine);
-                }
-            }
-            return NotFound();
+            return View();
         }
+        //[HttpGet] [HttpPost] 
+        //public async Task<IActionResult> HandleConflict(int bookingId, DateTime newBookingDate)
+        //{
+        //    var booking = await _context.Bookings.Include(b => b.Machine).FirstOrDefaultAsync(b => b.Id == 5);
+
+        //    if (booking != null)
+        //    {
+        //        var newMachine = await _context.Machines.FirstOrDefaultAsync(m => m.IsAvailable == false);
+
+        //        if (newMachine != null)
+        //        {
+        //            booking.MachineId = newMachine.Id;
+        //            booking.BookingDate = DateOnly.FromDateTime(newBookingDate);
+        //            booking.IsAcknowledged = true; // Ensure this is set as per your logic
+
+        //            // Log the values being updated
+        //            Console.WriteLine($"Updating Booking: Id={booking.Id}, BookingDate={booking.BookingDate}, CustomerId={booking.CustomerId}, IsAcknowledged={booking.IsAcknowledged}, MachineId={booking.MachineId}");
+
+        //            // Update the booking
+        //            _context.Bookings.Update(booking);
+        //            await _context.SaveChangesAsync();
+
+        //            return RedirectToAction("ConflictResolved", new { machineId = newMachine.Id });
+        //        }
+        //    }
+
+        //    return NotFound();
+        //}
+
     }
 }
