@@ -1,9 +1,5 @@
 This is my Structure
 
-
-
-
-
 LawnMowingBookingService
 │
 ├── Controllers
